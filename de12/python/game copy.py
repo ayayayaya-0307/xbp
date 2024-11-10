@@ -1,5 +1,6 @@
 import random
 import time
+import numpy as np
 
 def main():
     print("競馬場へようこそ！")
@@ -40,7 +41,9 @@ def main():
 
     print("さあ、最終的なレースの結果は……")
     time.sleep(3)
-    kekka=random.randint(1,6)
+    uma=[1,2,3,4,5]
+    weights=[0.3,0.3,0.2,0.1,0.1]
+    kekka=np.random.choice(uma,p=weights)
     print("確定しました！",str(kekka),"番人気の馬の優勝です！！")
     time.sleep(2)
 

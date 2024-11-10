@@ -8,16 +8,45 @@
 </head>
 <body>
     <div>
+        <h3>概要</h3>
         私は競馬のゲームを作りました。<br>
-        紹介される順など実際と異なる点が多くありますが、分かりやすさ重視なので見逃してください。
+        実際と異なる点が多くありますが、プレイした時の分かりやすさを重視しているため見逃してください。<br><br>
+        <h3>解説</h3>
+        ゲームの流れとしては、<br>
+
+        １、馬の紹介<br>
+        ２、馬を選ぶ<br>
+        ３，レース開始、実況<br>
+        ４，結果<br>
+
+        となっています。<br><br>
+
+        実況パートで同じ馬が連続で出ないようにしました。<br>
+        また、人気順で優勝のしやすさが変わるようにしようか迷いましたが、<br>
+        実際の競馬では人気な馬は他の馬に警戒されてしまい逆に勝ちにくくなるので、反映させない事にしました。<br><br>
+        仮に入れるとしたら、<br>
+        「import numpy as np」<br>
+        を先頭に置いた上で<br><br>
+
     </div>
+    <code>
+        <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+        <li style="background-color:#EFF;">uma=[1,2,3,4,5]</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;weights=[0.3,0.3,0.2,0.1,0.1]</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;kekka=np.random.choice(uma,p=weights)</li>
+        </ol></code>
+    <div>
+        を４４行目に置き換えたと思います。<br><br>
+        そんな競馬のゲームのソースコードは下のモノです。：）
+        <br><br>
+        <h3>コード</h3>
+    </div>
+   
     <code>
         <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
         <li style="background-color:#EFF;">import random</li>
         <li style="background-color:#EEF;">import time</li>
         <li style="background-color:#EFF;"></li>
-        <li style="background-color:#EEF;">def roledice():</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;return random.randint(1,6)</li>
         <li style="background-color:#EEF;"></li>
         <li style="background-color:#EFF;">def main():</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("競馬場へようこそ！")</li>
@@ -25,38 +54,51 @@
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("ここは競馬場。さっそく予測を立ててみましょう！")</li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("一番人気、エクスビジネスー")</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1.7)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.7)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("二番人気、ジュギョネムイ")</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1.7)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.7)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("三番人気、オヤツマダカー")</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1.7)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.7)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("四番人気、アイワントタンイ")</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1.7)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.7)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("五番人気、カダイオワラン")</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1.7)</li>
-        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;gess=int(input("どの馬が優勝すると思い思いますか？(人気番号の数字で教えてください)"))</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(0.7)</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;gess=int(input("どの馬が優勝すると思いますか？(人気番号の半角数字で教えてください)"))</li>
         <li style="background-color:#EFF;"></li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("レースが始まりました。")</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)</li>
+        <li style="background-color:#EEF;"></li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;keika=random.randint(1,6)</li>
-        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print("さあ、真っ先に飛び出したのは",str(keika),"番人気の馬です。")</li>
-        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("さあ、真っ先に飛び出したのは",str(keika),"番人気の馬です。")</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+        <li style="background-color:#EEF;"></li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;keikaa=random.randint(1,6)</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;while keikaa == keika:</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;keikaa=random.randint(1,6)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("おおっと！ここで",str(keikaa),"番の馬が前に躍り出た！")</li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+        <li style="background-color:#EEF;"></li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;saigo=random.randint(1,6)</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;saigoo=random.randint(1,6)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;while saigoo == saigo:</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;saigoo=random.randint(1,6)</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print("最終コーナー、先頭で競り合っているのは",str(saigo),"番、",str(saigoo),"番の二頭です！")</li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+        <li style="background-color:#EFF;"></li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("さあ、最終的なレースの結果は……")</li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(3)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;kekka=random.randint(1,6)</li>
-        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print("確定しました！",str(kekka),"番の優勝です！！")</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print("確定しました！",str(kekka),"番人気の馬の優勝です！！")</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
         <li style="background-color:#EFF;"></li>
+        <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("あなたが予想したのは",gess,"番人気の馬です。")</li>
+        <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;if gess == kekka:</li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("おめでとう御座います！")</li>
         <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;else:</li>
         <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("残念でした……")</li>
         <li style="background-color:#EEF;">main()</li>
         <li style="background-color:#EFF;"></li>
-        <li style="background-color:#EEF;"></li>
         </ol></code>
 
 </body>
