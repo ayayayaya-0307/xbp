@@ -10,6 +10,7 @@ for i in range(1,4): #コロンが入っていることに注意
         print(name,"さん、内臓脂肪蓄積注意です")
     else:
         print(name,"さん、腹囲は問題ありません")
+    
 
 
 
