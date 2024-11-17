@@ -19,7 +19,6 @@ with open(filename,"w", encoding="utf-8") as f:
 #↑指定したファイルを開き、書き込みモード（ｗ）にし、UTF-8でファイルを扱うと指定する
 
 
-#_2DunygeBZHdgHX_Gih3GC4というクラスのリンクとテキストを持ってくる指示。
     topic = soup.find(class_="_2DunygeBZHdgHX_Gih3GC4")
     #先ほど解析したHTMLコンテンツから「_2DunygeBZHdgHX_Gih3GC4」という項目を探し、topicに定義する
     for element in topic.find_all("a"):

@@ -7,11 +7,26 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+<h2>複数のライブラリを組み合わせる</h2>
+<h3>概要</h3>
 <div>
-    私は今回ヤフーニュースからニュースを引っ張った上で関連項目を検索できるプログラムを作りました。<br>
+    私は今回ヤフーニュースからニュースを引っ張った上で関連項目をGoogleとWikipediaで検索できるプログラムを作りました。<br>
+    <br>
+    ヤフーニュースの引用<br>
+    ↓<br>
+    Googleで検索<br>
+    ↓<br>
+    気になるならWikipediaでも検索<br>
+    <br>
+    というプログラムです。<br>
+    作った動機は、私がたまにやるからです。<br>
+    <br>
     使った外部ライブラリは[requests]と[BeautifulSoup]と[wikipedia]です。<br>
-    外部ライブラリの部分は詳しくコメントも付けてみたので、是非参考にしてみてください。<br><br><br>
+    yahooの部分は詳しくコメントも付けました。<br>
+    これだと見にくいと思うので、是非コピペして貼り付けて色付きで見てください。<br>
+    （Googleはコメントを書いていませんが、ほぼYahooと同じやり方です）<br><br><br>
 </div>
+<h3>コード</h3>
 <code>
     <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
     <li style="background-color:#EFF;">import requests</li>
@@ -23,47 +38,120 @@
     <li style="background-color:#EFF;"></li>
     <li style="background-color:#EEF;">url = "https://www.yahoo.co.jp/l"</li>
     <li style="background-color:#EFF;">#↑取得したいWEBページのURL</li>
-    <li style="background-color:#EEF;">html = requests.get(url)</li>
-    <li style="background-color:#EFF;">#↑指定したURLにGETリクエストを送り、HTMLコンテンツを取得</li>
-    <li style="background-color:#EEF;">soup = BeautifulSoup(html.content,"html.parser")</li>
-    <li style="background-color:#EFF;">#取得したHTMLコンテンツを解析し、操作可能なオブジェクトに変換</li>
     <li style="background-color:#EEF;"></li>
-    <li style="background-color:#EFF;">filename = "linklist.text"</li>
-    <li style="background-color:#EEF;">#↑書き込みたいファイルを指定</li>
-    <li style="background-color:#EFF;">with open(filename,"w", encoding="utf-8") as f:</li>
-    <li style="background-color:#EEF;">#指定したファイルを開き、書き込みモード（ｗ）にし、UTF-8でファイルを扱うと指定する</li>
+    <li style="background-color:#EFF;">html = requests.get(url)</li>
+    <li style="background-color:#EEF;">#↑指定したURLにGETリクエストを送り、HTMLコンテンツを取得</li>
+    <li style="background-color:#EFF;">soup = BeautifulSoup(html.content,"html.parser")</li>
+    <li style="background-color:#EEF;">#取得したHTMLコンテンツを解析し、操作可能なオブジェクトに変換</li>
     <li style="background-color:#EFF;"></li>
-    <li style="background-color:#EEF;">#中身。_2DunygeBZHdgHX_Gih3GC4ていうクラスのリンクとテキストを持ってくる指示。</li>
+    <li style="background-color:#EEF;">filename = "linklist.text"</li>
+    <li style="background-color:#EFF;">#↑書き込みたいファイルを指定</li>
+    <li style="background-color:#EEF;">with open(filename,"w", encoding="utf-8") as f:</li>
+    <li style="background-color:#EFF;">#↑指定したファイルを開き、書き込みモード（ｗ）にし、UTF-8でファイルを扱うと指定する</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">　　</li>
     <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;topic = soup.find(class_="_2DunygeBZHdgHX_Gih3GC4")</li>
-    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;for element in topic.find_all("a"):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;#先ほど解析したHTMLコンテンツから「_2DunygeBZHdgHX_Gih3GC4」という項目を探し、topicに定義する</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for element in topic.find_all("a"):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;#topicの中から「a」というタグのテキストをすべて探し、順番に処理する</li>
     <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(element.text)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#現在処理しているタグの文言を表示する。</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#例: &lt;a href="example.com"&gt;Example&lt;/a&gt; の場合、"Example"が表示される。</li>
     <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url2 = element.get("href")</li>
-    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link_url = urllib.parse.urljoin(url,url2)</li>
-    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(element.text+"\n")</li>
-    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(link_url+"\n")</li>
-    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write("\n")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#テキストのhref属性（URLみたいなの）を取得する。</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link_url = urllib.parse.urljoin(url,url2)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#URLみたいなのを完全なURLにする</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#例: url = "https://www.yahoo.co.jp/l" と url2 = "/page" なら、link_urlは"https://www.yahoo.co.jp/l/page"になる。</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(element.text+"\n")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(link_url+"\n")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write("\n")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#それぞれファイルに書き起こす</li>
     <li style="background-color:#EFF;"></li>
     <li style="background-color:#EEF;">print(" ")</li>
-    <li style="background-color:#EFF;">print("本日のニュースは以上です")</li>
-    <li style="background-color:#EEF;">time.sleep(1)</li>
-    <li style="background-color:#EFF;">print("何か気になる用語はありますか？")</li>
-    <li style="background-color:#EEF;">print("関連用語を日本語と英語で検索します")</li>
-    <li style="background-color:#EFF;">print("　")</li>
-    <li style="background-color:#EEF;">kansu=input("ここに記入してください→")</li>
-    <li style="background-color:#EFF;"></li>
-    <li style="background-color:#EEF;">keyword = kansu</li>
-    <li style="background-color:#EFF;"># キーワードで検索</li>
-    <li style="background-color:#EEF;">print("-------日本語---------")</li>
-    <li style="background-color:#EFF;">wikipedia.set_lang("ja")</li>
-    <li style="background-color:#EEF;">result = wikipedia.search(keyword)</li>
-    <li style="background-color:#EFF;">print("検索結果",result)</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">print("本日のニュースは以上です")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">print("何か気になる用語はありますか？")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">print("WikipediaとGoogleで検索できます")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
     <li style="background-color:#EEF;">print("　")</li>
-    <li style="background-color:#EFF;">time.sleep(2)</li>
+    <li style="background-color:#EFF;">kansu=input("検索：")</li>
+    <li style="background-color:#EEF;">print("-------------------")</li>
+    <li style="background-color:#EFF;"></li>
     <li style="background-color:#EEF;"></li>
-    <li style="background-color:#EFF;">print("-------英語---------")</li>
-    <li style="background-color:#EEF;">wikipedia.set_lang("en")</li>
-    <li style="background-color:#EFF;">result = wikipedia.search(keyword)</li>
-    <li style="background-color:#EEF;">print("検索結果",result)</li>
-    <li style="background-color:#EFF;">time.sleep(2)</li>
+    <li style="background-color:#EFF;">def google_search(query, num_results=10):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# URLに変換する</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;query = query.replace(' ', '+')</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;url = f"https://www.google.com/search?q={query}&amp;num={num_results}"</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;#ブラウザのふりをする</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;headers = {</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# Google検索ページを取得する</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;response = requests.get(url, headers=headers)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;soup = BeautifulSoup(response.text, "html.parser")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 検索結果を抽出する</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;results = []</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for g in soup.find_all('div', class_='tF2Cxc'):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title = g.find('h3')</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link = g.find('a')['href']</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;snippet = g.find('span', class_='aCOpRe')</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if title and link:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;results.append({</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": title.text,</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"link": link,</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"snippet": snippet.text if snippet else "説明なし"</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;return results</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 実行</li>
+    <li style="background-color:#EFF;">print("　")</li>
+    <li style="background-color:#EEF;">print("Google")</li>
+    <li style="background-color:#EFF;">print(" ")</li>
+    <li style="background-color:#EEF;">search_results = google_search(kansu, num_results=5)</li>
+    <li style="background-color:#EFF;">for result in search_results:</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f"タイトル: {result['title']}")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f"リンク: {result['link']}")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(f"スニペット: {result['snippet']}")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(2)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("-" * 50)</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">print(" ")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">print("続いて、Wikipediaでも検索しますか？")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">yesorno = input("検索を続ける場合は「YES」と、プログラムを終了する場合は「NO」と書いてください。")</li>
+    <li style="background-color:#EFF;">time.sleep(1)</li>
+    <li style="background-color:#EEF;">if yesorno == ("YES"):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(" ")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("Wikipedia")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print(" ")</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;wikipedia.set_lang("ja")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;result = wikipedia.search(kansu)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("検索結果",result)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(3)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(" ")</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print("最初の検索結果を表示")</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;page_data = wikipedia.page(result[0])</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(page_data.content)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;time.sleep(1)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">print(" ")</li>
+    <li style="background-color:#EFF;">print("これで終わります")</li>
     </ol></code>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div>
+    ここだけの話、GoogleはAPIを使いたくなかったので無理矢理Yahooと同じやり方をしました。<br>
+    ですが、規約的にあまりよろしくないやり方なので、真似しない方がいいです。<br>
+    次やるときは大人しく課金しようと思います。
+</div> 
 </body>
