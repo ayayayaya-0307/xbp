@@ -31,8 +31,9 @@ print(" ")
 print("本日のニュースは以上です")
 time.sleep(1)
 print("何か気になる用語はありますか？")
-print("")
-kansu=input("何か気になる用語はありますか？")
+print("関連用語を日本語と英語で検索します")
+print("　")
+kansu=input("ここに記入してください→")
 
 keyword = kansu
 # キーワードで検索
