@@ -1,0 +1,135 @@
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap');
+
+:root {
+    --cafe-dark: #4e443c;
+    --cafe-medium: #8d7765;
+    --cafe-light: #f5f0e8;
+    --white: #ffffff;
+    --black-alpha: rgba(0, 0, 0, 0.4); /* 画像の上の文字を見やすくするオーバーレイ */
+}
+
+/* --- 全体設定 --- */
+body {
+    font-family: 'Zen Maru Gothic', serif;
+    line-height: 1.9;
+    color: var(--cafe-dark);
+    background-color: var(--cafe-light);
+    margin: 0;
+    overflow-x: hidden; /* 横スクロール防止 */
+}
+
+/* --- 画像のパララックス（視差）効果のクラス --- */
+.parallax {
+    background-attachment: fixed; /* これが肝！画像を固定 */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* --- ヒーローセクション（ファーストビュー） --- */
+.hero {
+    height: 100vh; /* 画面いっぱいの高さ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    text-align: center;
+    position: relative;
+    /* ★背景画像をHTMLで指定するか、ここにurl()で指定 */
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--black-alpha); /* 画像を少し暗くする */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1; /* オーバーレイより上に */
+    font-family: 'Noto Serif JP', serif;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    letter-spacing: 0.3em;
+    margin: 0;
+}
+
+/* --- メインコンテンツ --- */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+}
+
+/* --- 画像と文字のレイアウト（Infoセクション） --- */
+.info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2段組み */
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 6rem;
+}
+
+.info-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* 柔らかい影 */
+}
+
+.info-text h2 {
+    font-family: 'Noto Serif JP', serif;
+    text-align: left;
+    margin-top: 0;
+}
+
+/* --- ミッド・パララックス（途中の画像エリア） --- */
+.mid-parallax {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.5rem;
+    /* ★背景画像をHTMLかここで指定 */
+}
+
+/* -------------------------------------------
+ * ★CSS スクロールアニメーションの魔法
+ * ------------------------------------------- */
+
+/* 1. フェードインさせたい要素の初期状態 */
+.fade-in {
+    opacity: 0;            /* 最初は透明 */
+    transform: translateY(30px); /* 少し下に配置 */
+    transition: opacity 1s, transform 1s; /* 1秒かけて変化 */
+}
+
+/* 2. 「表示されたとき」のクラス（JSまたはCSSだけで実装） */
+/* CSSのみの簡易版：スクロールで画面に入ったら適用 */
+/* (※正確な発火はJSが優れていますが、CSSでもここまでできます) */
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0); /* 元の位置に */
+}
+
+/* スクロールによる発火の疑似実装 (CSS Timeline / experimental) */
+/* 2024年現在、主要ブラウザ（Chrome, Edge, Safari）で対応。Firefoxは設定が必要 */
+@supports (animation-timeline: view()) {
+    @keyframes fade-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+        animation: fade-up 1s both;
+        animation-timeline: view(); /* 画面に入ったらアニメーション */
+        animation-range: entry 10% cover 30%; /* 開始・終了のタイミング */
+    }
+}

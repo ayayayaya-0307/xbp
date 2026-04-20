@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>CAFE LANTERN - コーヒーと、穏やかな時間。</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero parallax" style="background-image: url('');">
+        <div class="hero-content">
+            <p>こだわりの一杯を。</p>
+            <h1>LANTERN</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="info-section fade-in">
+            <div class="info-image">
+                <img src="images/interior.jpg" alt="店内の様子">
+            </div>
+            <div class="info-text">
+                <h2>穏やかな時間が流れる場所</h2>
+                <p>路地裏にひっそりと佇む当家では、こだわりの豆を使ったネルドリップコーヒーと、季節の自家製スイーツをご用意しております。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="mid-parallax parallax" style="background-image: url('images/beans.jpg');">
+        <p>珈琲の香りに包まれて。</p>
+    </div>
+
+    <div class="container">
+
+        <section class="fade-in">
+            <h2 style="text-align: center; margin-bottom: 3rem;">こだわり</h2>
+            <p style="text-align: center;">私たちは、一杯のコーヒーがもたらす「安らぎ」を大切にしています。毎日、その日の気温や湿度に合わせて焙煎を調整し、最も美味しい状態で提供します。</p>
+        </section>
+
+    </div>
+
+</body>
+</html>
