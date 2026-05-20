@@ -51,4 +51,8 @@ span.blackback{
     background: #393939;
     color: #efefef;
 }
-
+.highlight-text {
+  background-color: yellow; /* 好きな色に変えられます */
+  padding: 2px 6px;         /* 文字の周りのクッション（余白） */
+  border-radius: 4px;       /* 角を少し丸くする */
+}
