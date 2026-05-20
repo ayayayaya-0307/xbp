@@ -79,3 +79,10 @@ span.blackback{
   margin-bottom: 5px;      /*上下の背景色の間をあける
   border-radius: 4px;       /* 角を少し丸くする */
 }
+.kyouto {
+  background-color: rgb(212, 161, 235); /* 好きな色に変えられます */
+  display: inline-block; /*余白を正しく適用させる
+  padding: 2px 8px;         /* 文字の周りのクッション（余白） */
+  margin-bottom: 5px;      /*上下の背景色の間をあける
+  border-radius: 4px;       /* 角を少し丸くする */
+}
