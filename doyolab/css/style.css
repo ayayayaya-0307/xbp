@@ -26,7 +26,7 @@ html, body {
 	font-family: sans-serif;
 	color: #393939;
     margin-left: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
 	background: #efefef;
 }
 h1{
@@ -51,8 +51,31 @@ span.blackback{
     background: #393939;
     color: #efefef;
 }
+.hukui {
+  background-color: rgb(161, 231, 235); /* 好きな色に変えられます */
+  display: inline-block; /*余白を正しく適用させる
+  padding: 2px 8px;         /* 文字の周りのクッション（余白） */
+  margin-bottom: 5px;      /*上下の背景色の間をあける
+  border-radius: 4px;       /* 角を少し丸くする */
+}
 .izu {
   background-color: rgb(235, 235, 161); /* 好きな色に変えられます */
-  padding: 2px 6px;         /* 文字の周りのクッション（余白） */
+  display: inline-block; /*余白を正しく適用させる
+  padding: 2px 8px;         /* 文字の周りのクッション（余白） */
+  margin-bottom: 5px;      /*上下の背景色の間をあける
+  border-radius: 4px;       /* 角を少し丸くする */
+}
+.yamagata {
+  background-color: rgb(161, 235, 180); /* 好きな色に変えられます */
+  display: inline-block; /*余白を正しく適用させる
+  padding: 2px 8px;         /* 文字の周りのクッション（余白） */
+   margin-bottom: 5px;      /*上下の背景色の間をあける
+  border-radius: 4px;       /* 角を少し丸くする */
+}
+.aomori {
+  background-color: rgb(235, 161, 161); /* 好きな色に変えられます */
+  display: inline-block; /*余白を正しく適用させる
+  padding: 2px 8px;         /* 文字の周りのクッション（余白） */
+  margin-bottom: 5px;      /*上下の背景色の間をあける
   border-radius: 4px;       /* 角を少し丸くする */
 }
